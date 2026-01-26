@@ -56,18 +56,20 @@ return {
       "}",
     }),
   }),
-  
+    
   -- Dijkstra
   s("dijkstra", {
     t({
       "static const int MAX = 1e9; // change if required",
       "using P = std::pair<int, int>; // {to, cost} *change if required",
       "",
-      "std::vector<int> dijkstra(int s, std::vector<std::vector<P>> &adj) { // O(E * logV)",
+      "std::vector<int> dijkstra(int s, int t, std::vector<std::vector<P>> &adj) { // O(E * logV)",
       "    int n = adj.size();",
       "",
       "    std::vector<int> d(n); // distance array",
       "    for (int i = 0; i < n; i++) d[i] = (i == s) ? 0 : MAX;",
+      "",
+      "    std::vector<int> parent(n, -1); // prev node on shortest path",
       "",
       "    std::priority_queue<P, std::vector<P>, std::greater<P>> pq; // min heap required",
       "    pq.push({0, s}); // (distance, vertex)",
@@ -80,17 +82,29 @@ return {
       "",
       "        if (dist > d[u]) continue; // skip outdated node",
       "        for (int i = 0; i < (int)adj[u].size(); i++) {",
-      "            auto p = adj[u][i];",
-      "            int v = p.first; // to",
-      "            int cost = p.second; // cost",
-      "            if (d[u] + cost < d[v]) {",
-      "                d[v] = d[u] + cost; // update",
+      "            auto e = adj[u][i];",
+      "            int v = e.first; // to",
+      "            int c = e.second; // cost",
+      "            if (d[u] + c < d[v]) {",
+      "                d[v] = d[u] + c; // update",
+      "                parent[v] = u; // record path",
       "                pq.push({d[v], v});",
       "            }",
       "        }",
       "    }",
       "",
-      "    return d; // return distance array",
+      "    // reconstruct path",
+      "    std::vector<int> path;",
+      "    int v = t;",
+      "",
+      "    while (v != -1) {",
+      "        path.push_back(v);",
+      "        if (v == s) break;",
+      "        v = parent[v];",
+      "    }",
+      "    std::reverse(path.begin(), path.end());",
+      "",
+      "    return path; // shortest path from s to t",
       "}",
     }),
   }),
@@ -107,15 +121,6 @@ return {
       "        }",
       "    }",
       "}",
-    }),
-  }),
-
-  -- Sort vector
-  s("sortVector", {
-    t({
-      "// #include <algorithm> needed",
-      "// O(N * logN), descending (remove 3rd arg if ascending), #include <algorithm> needed",
-      "std::sort(x.begin(), x.end(), [](int a, int b){ return a > b; });",
     }),
   }),
 
@@ -144,6 +149,23 @@ return {
       "}",
     }),
   }),
+  
+  -- prefix sum (0 th index)
+  s("pref", {
+    t({
+      "std::vector<long long> ps(N);",
+      "for (int i = 0; i < N; i++)",
+      "    ps[i] = (i == 0) ? A[i] : ps[i - 1] + A[i];",
+    }),
+  }),
+  
+    -- Sort vector
+  s("sortVector", {
+    t({
+      "// O(N * logN), descending (remove 3rd arg if ascending)",
+      "std::sort(x.begin(), x.end(), [](int a, int b){ return a > b; });",
+    }),
+  }),
 
   -- Euclidean algorithm (i.e. Greatest Common Divisor)
   s("gcd", {
@@ -161,7 +183,63 @@ return {
       "int mod(int a, int b) {return (a % b + b) % b;}",
     }),
   }),
- 
+
+  -- Convert base-b string to decimal
+  s("toBase10", {
+    t({
+      "function toBase10(s, b)",
+      "    local d10 = 0",
+      "    for i = 1, #s do",
+      "        local c = s:sub(i,i)",
+      "        d10 = d10 * b + (tonumber(c) or 0)",
+      "    end",
+      "    return d10",
+      "end",
+    }),
+  }),
+
+  -- Exponentiation by squaring (modular)
+  s("expBySquare", {
+    t({
+      "ll expBySquare(ll k, ll n, int mod){",
+      "    ll res = 1;",
+      "    while(n > 0){",
+      "        if(n & 1) res = res * k % mod;",
+      "        k = k * k % mod;",
+      "        n >>= 1;",
+      "    }",
+      "    return res;",
+      "}",
+    }),
+  }),
+
+  -- next_permutation boilerplate
+  s("nextPerm", {
+    t({
+      "do {",
+      "    for (int i = 0; i < N; i++) {",
+      "        // do something (e.g. std::cout << A[i];)",
+      "    }",
+      "",
+      "} while (std::next_permutation(A.begin(), A.end()));",
+    }),
+  }),
+
+  -- next_combination booiler plate using mask + TO BE IMPROVED
+  s("nextComb", {
+    t({
+      "std::vector<int> mask(N, 0); // 0 or 1",
+      "std::fill(mask.begin(), mask.begin() + K, 1); // init first K with 1",
+      "",
+      "do {",
+      "    for (int i = 0; i < N; i++) {",
+      "        // do something (e.g. std::cout << A[i];)",
+      "    }",
+      "",
+      "} while (std::prev_permutation(mask.begin(), mask.end()));",
+    }),
+  }),
+
    -- Digit sum of a string
   s("digitsum", {
     t({
@@ -169,6 +247,20 @@ return {
       "    int sum = 0;",
       "    for (char c : s) sum += c - '0'; // char digit to int",
       "    return sum;",
+      "}",
+    }),
+  }),
+
+  -- Base-b string to decimal
+  s("toBase10", {
+    t({
+      "ll toBase10(const std::string& d, int b) { // base-8 string → decimal",
+      "    ll d10 = 0;",
+      "    for (char c : d) {",
+      "        d10 = d10 * b + (c - '0');",
+      "    }",
+      "",
+      "    return d10;",
       "}",
     }),
   }),
@@ -231,22 +323,64 @@ return {
     }),
   }),
   
-   -- segment tree  
+  -- segment tree
   s("segTree", {
     t({
+      "class Monoid {",
+      "public:",
+      "    int unit;",
+      "    Monoid() { unit = 0; } // identity element",
+      "    int calc(int a, int b) { return a + b; }",
+      "};",
+      "",
+      "class SegTree {",
+      "public:",
+      "    int n;",
+      "    std::vector<int> tree;",
+      "    Monoid mono;",
+      "",
+      "    SegTree(std::vector<int> &v) {",
+      "        n = 1 << (int)std::ceil(std::log2(v.size()));",
+      "        tree = std::vector<int>(n << 1);",
+      "",
+      "        for(int i = 0; i < (int)v.size(); i++)",
+      "            update(i, v[i]);",
+      "        for(int i = v.size(); i < n; i++)",
+      "            update(i, mono.unit);",
+      "    }",
+      "",
+      "    void update(int k, int x) { // update kth with x",
+      "        k += n;",
+      "        tree[k] = x;",
+      "        for(k = k >> 1; k > 0; k >>= 1){",
+      "            tree[k] = mono.calc(tree[k << 1 | 0], tree[k << 1 | 1]);",
+      "        }",
+      "    }",
+      "",
+      "    int query(int l, int r) { // return [l, r), 0-origin",
+      "        int res = mono.unit;",
+      "        l += n;",
+      "        r += n;",
+      "        while(l < r) {",
+      "            if(l & 1) {",
+      "                res = mono.calc(res, tree[l++]);",
+      "            }",
+      "            if(r & 1) {",
+      "                res = mono.calc(res, tree[--r]);",
+      "            }",
+      "            l >>= 1;",
+      "            r >>= 1;",
+      "        }",
+      "        return res;",
+      "    }",
+      "",
+      "    int operator[](int k) { // return st[k], 0-origin",
+      "        return tree[tree.size() - n + k];",
+      "    }",
+      "};",
     }),
   }),
 
-
-  -- prefix sum (0 th index)
-  s("pref", {
-    t({
-      "std::vector<long long> ps(N);",
-      "for (int i = 0; i < N; i++)",
-      "    ps[i] = (i == 0) ? A[i] : ps[i - 1] + A[i];",
-    }),
-  }),
-  
   -- Print 1D arrays
   s("printVector", {
     t({
@@ -266,6 +400,5 @@ return {
       "}",
     }),
   }),
-
 }
 

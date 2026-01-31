@@ -380,25 +380,5 @@ return {
       "};",
     }),
   }),
-
-  -- Print 1D arrays
-  s("printVector", {
-    t({
-      "for (int i = 0; i < N; i++) std::cout << A[i] << \" \";",
-      "std::cout << \"\\n\";",
-    }),
-  }),
-
-  -- Print 2D array
-  s("printGrid", {
-    t({
-      "for (int i = 0; i < N; i++) {",
-      "    for (int j = 0; j < M; j++) {",
-      "        std::cout << A[i][j] << \" \";",
-      "    }",
-      "    std::cout << \"\\n\";",
-      "}",
-    }),
-  }),
 }
 

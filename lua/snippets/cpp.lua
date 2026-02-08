@@ -7,12 +7,13 @@ return {
   -- Binary Search
   s("binarySearch", {
     t({
-      "int binary_search(int key) {",
+      "int binary_search(int key, const::std::vector<int> &A) {",
       "    int left = -1; // i = 0 does not always satisfy condition",
-      "    int right = (int)a.size();",
+      "    int right = (int)A.size();",
       "    while (right - left > 1) {",
       "        int mid = left + (right - left) / 2;",
-      "        if (solve(mid, key)) right = mid; // solve defined elsewhere",
+      "        // if (A[mid] >= key) right = mid; // argmin k (key < A[k]) *ascending",
+      "        // if (solve(mid, key)) right = mid; // define solve elsewhere",
       "        else left = mid;",
       "    }",
       "    return right;",
@@ -162,8 +163,8 @@ return {
     -- Sort vector
   s("sortVector", {
     t({
-      "// O(N * logN), descending (remove 3rd arg if ascending)",
-      "std::sort(x.begin(), x.end(), [](int a, int b){ return a > b; });",
+      "// descending (remove 3rd arg if ascending)",
+      "std::sort(x.begin(), x.end(), [](int a, int b){ return a > b; }); // O(N * logN)",
     }),
   }),
 
@@ -225,21 +226,6 @@ return {
     }),
   }),
 
-  -- next_combination booiler plate using mask + TO BE IMPROVED
-  s("nextComb", {
-    t({
-      "std::vector<int> mask(N, 0); // 0 or 1",
-      "std::fill(mask.begin(), mask.begin() + K, 1); // init first K with 1",
-      "",
-      "do {",
-      "    for (int i = 0; i < N; i++) {",
-      "        // do something (e.g. std::cout << A[i];)",
-      "    }",
-      "",
-      "} while (std::prev_permutation(mask.begin(), mask.end()));",
-    }),
-  }),
-
    -- Digit sum of a string
   s("digitsum", {
     t({
@@ -265,9 +251,28 @@ return {
     }),
   }),
 
-  -- imos (i.e. 2d) 
+  -- cout with fixed precision
+  s("coutPrecision", {
+    t({
+      "std::cout << std::fixed << std::setprecision(17) << ans << std::endl; // double"
+    }),
+  }),
+
+  -- imos (1d)
   s("imos", {
     t({
+      "std::vector<int> imos(N + 1, 0);",
+      "for (int i = 0; i < M; i++) { // 1dim imos",
+      "    int l, r;",
+      "    std::cin >> l >> r;",
+      "    l--; r--; // 0 index",
+      "    imos[l]++;",
+      "    imos[r + 1]--;",
+      "}",
+      "",
+      "std::vector<int> A(N + 1);",
+      "for (int i = 0; i < N; i++)",
+      "    A[i] = (i == 0) ? imos[i] : A[i - 1] + imos[i];",
     }),
   }),
 

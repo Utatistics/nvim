@@ -185,17 +185,37 @@ return {
     }),
   }),
 
-  -- Convert base-b string to decimal
-  s("toBase10", {
+  -- Prime Check (O(sqrt(N)))
+  s("isPrime", {
     t({
-      "function toBase10(s, b)",
-      "    local d10 = 0",
-      "    for i = 1, #s do",
-      "        local c = s:sub(i,i)",
-      "        d10 = d10 * b + (tonumber(c) or 0)",
-      "    end",
-      "    return d10",
-      "end",
+      "bool isPrime(int x) {",
+      "    if (x < 2) return false;",
+      "    if (x == 2) return true;",
+      "    if (x % 2 == 0) return false;",
+      "",
+      "    for (int i = 3; i * i <= x; i += 2) {",
+      "        if (x % i == 0) return false;",
+      "    }",
+      "",
+      "    return true;",
+      "}",
+    }),
+  }),
+
+  -- Prime Factorization (O(sqrt(N)))
+  s("primeFactor", {
+    t({
+      "ll r = N; // remainder",
+      "std::vector<ll> p; // prime factors",
+      "",
+      "for (ll i = 2; i * i <= r; i++) {",
+      "    while (r % i == 0) {",
+      "        r /= i;",
+      "        p.push_back(i);",
+      "    }",
+      "}",
+      "",
+      "if (r != 1LL) p.push_back(r);",
     }),
   }),
 

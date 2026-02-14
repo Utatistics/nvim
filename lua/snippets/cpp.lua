@@ -39,8 +39,10 @@ return {
   -- BFS
   s("bfs", {
     t({
-      "void bfs(int s, const std::vector<std::vector<int>> &adj, std::vector<bool> &status) {",
+      "void bfs(int s, const std::vector<std::vector<int>> &adj) {",
+      "    std::status<bool> stattus;",
       "    std::queue<int> q;",
+      "",
       "    status[s] = true;",
       "    q.push(s);",
       "",
@@ -278,6 +280,18 @@ return {
     }),
   }),
 
+  -- run length encoding (string)
+  s("rle", {
+    t({
+      "std::vector<std::pair<char,int>> rle;",
+      "rle.push_back({S[0], 1});",
+      "for (int i = 1; i < N; i++) {",
+      "    if (S[i] == rle.back().first) rle.back().second++;",
+      "    else rle.push_back({S[i], 1});",
+      "}",
+    }),
+  }),
+
   -- imos (1d)
   s("imos", {
     t({
@@ -299,18 +313,19 @@ return {
   -- Two-pointer (i.e. shakutori) 
   s("twoptr", {
     t({
+      "int ans = 0;",
       "int r = 0;",
       "long long s = 0;",
       "for (int l = 0; l < N; l++) {",
-      "    while (r < N && /* condition */) {",
+      "    while (r < N && /* condition */) { // monotonically increasing", 
       "        // e.g. s += A[r];",
       "        r++;",
       "    }",
       "",
-      "    // ans update here",
+      "    // e.g. ans = std::max(ans, r - l); // update ans",
       "",
       "    if (r == l) ++r;",
-      "    // e.g. else s -= A[l];",
+      "    // e.g. else s -= A[l]; // prepare 'l' to move forward",
       "}",
     }),
   }),

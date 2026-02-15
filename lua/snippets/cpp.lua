@@ -2,8 +2,27 @@ local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
+local snippet_dir = debug.getinfo(1, "S").source:sub(2):match("(.*/)")
+
+local function load_cpp_lines(filename)
+    local full_path = snippet_dir .. filename
+    local file = io.open(full_path, "r")
+    if not file then
+        error("Cannot open file: " .. full_path)
+    end
+    local content = file:read("*all")
+    file:close()
+
+    local lines = {}
+    for line in content:gmatch("([^\n]*)\n?") do
+        table.insert(lines, line)
+    end
+    return lines
+end
 
 return {
+  s("doubling", { t(load_cpp_lines("doubling.cpp")) }),
+
   -- Binary Search
   s("binarySearch", {
     t({
@@ -143,6 +162,13 @@ return {
   
   -- 2D grid input (flattened to 1D)
   s("grid", {
+    t({
+      "std::vector<std::vector<int>> A(N, std::vector<int>(M, 0))"
+    }),
+  }),
+  
+    -- 2D grid input (flattened to 1D)
+  s("gridFlattened", {
     t({
       "std::vector<int> A(H * W);",
       "for (int i = 0; i < H; i++) { // H for rownum",

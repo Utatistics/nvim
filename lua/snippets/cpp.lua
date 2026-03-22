@@ -25,6 +25,7 @@ end
 return {
   s("adj", { t(load_cpp_lines("adj.cpp")) }),
   s("grid", { t(load_cpp_lines("grid.cpp")) }),
+  s("gridSearch", { t(load_cpp_lines("gridSearch.cpp")) }),
   s("gridFlattened", { t(load_cpp_lines("gridFlattened.cpp")) }),
   s("sortVector", { t(load_cpp_lines("sortVector.cpp")) }),
  

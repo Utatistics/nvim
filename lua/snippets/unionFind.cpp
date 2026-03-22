@@ -2,7 +2,7 @@ struct UnionFind {
     std::vector<int> p; // parent
 
     UnionFind(int N) : p(N) {
-        for (int i = 0; i < N; i++) p[i] = i;
+        for (int i = 0; i < N; i++) p[i] = i; // declare all nodes as root
     }
 
     int root(int x) {

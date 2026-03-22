@@ -1,5 +1,7 @@
-void bfs(int s, const std::vector<std::vector<int>> &adj) {
-    std::status<bool> stattus;
+std::vector<std::vector<int>> adj; 
+
+void bfs(int s) {
+    std::vector<bool> visited;
     std::queue<int> q;
 
     status[s] = true;

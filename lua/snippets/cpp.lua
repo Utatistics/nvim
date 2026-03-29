@@ -28,6 +28,7 @@ return {
   s("gridSearch", { t(load_cpp_lines("gridSearch.cpp")) }),
   s("gridFlattened", { t(load_cpp_lines("gridFlattened.cpp")) }),
   s("sortVector", { t(load_cpp_lines("sortVector.cpp")) }),
+  s("priorityQueue", { t(load_cpp_lines("priorityQueue.cpp")) }),
  
   s("digitSum", { t(load_cpp_lines("digitSum.cpp")) }),
   s("toBase10", { t(load_cpp_lines("toBase10.cpp")) }),
@@ -36,7 +37,7 @@ return {
   s("gcd", { t(load_cpp_lines("gcd.cpp")) }),
   s("mod", { t(load_cpp_lines("mod.cpp")) }),
   s("nextPerm", { t(load_cpp_lines("nextPerm.cpp")) }),
-  s("isPrimce", { t(load_cpp_lines("isPrime.cpp")) }),
+  s("isPrime", { t(load_cpp_lines("isPrime.cpp")) }),
   s("primeFactor", { t(load_cpp_lines("primeFactor.cpp")) }),
 
   s("bitmask", { t(load_cpp_lines("bitmask.cpp")) }),

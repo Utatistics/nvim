@@ -39,6 +39,7 @@ return {
   s("nextPerm", { t(load_cpp_lines("nextPerm.cpp")) }),
   s("isPrime", { t(load_cpp_lines("isPrime.cpp")) }),
   s("primeFactor", { t(load_cpp_lines("primeFactor.cpp")) }),
+  s("binomialCoefficient", { t(load_cpp_lines("binomialCoefficient.cpp")) }),
 
   s("bitmask", { t(load_cpp_lines("bitmask.cpp")) }),
   s("expBySquare", { t(load_cpp_lines("expBySquare.cpp")) }),

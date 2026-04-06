@@ -4,7 +4,7 @@ local t = ls.text_node
 local i = ls.insert_node
 local snippet_dir = debug.getinfo(1, "S").source:sub(2):match("(.*/)")
 
--- load snippet from .cpp files
+-- load snippet from .cpp files         
 local function load_cpp_lines(filename)
     local full_path = snippet_dir .. filename
     local file = io.open(full_path, "r")
@@ -39,6 +39,8 @@ return {
   s("nextPerm", { t(load_cpp_lines("nextPerm.cpp")) }),
   s("isPrime", { t(load_cpp_lines("isPrime.cpp")) }),
   s("primeFactor", { t(load_cpp_lines("primeFactor.cpp")) }),
+  s("enumDivisor", { t(load_cpp_lines("primeFactor.cpp")) }),
+  s("sieveEratosthenes", { t(load_cpp_lines("sieveEratosthenes.cpp")) }),
   s("binomialCoefficient", { t(load_cpp_lines("binomialCoefficient.cpp")) }),
 
   s("bitmask", { t(load_cpp_lines("bitmask.cpp")) }),

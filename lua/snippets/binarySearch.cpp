@@ -7,5 +7,5 @@ int binary_search(int key, const::std::vector<int> &A) {
         // if (solve(mid, key)) right = mid; // define solve elsewhere
         else left = mid;
     }
-    return right;
+    return right; // (int)A.size() if not found. 
 }

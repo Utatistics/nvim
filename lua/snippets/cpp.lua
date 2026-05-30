@@ -44,6 +44,7 @@ return {
   s("binomialCoefficient", { t(load_cpp_lines("binomialCoefficient.cpp")) }),
 
   s("bitmask", { t(load_cpp_lines("bitmask.cpp")) }),
+  s("recursion", { t(load_cpp_lines("recursion.cpp")) }),
   s("expBySquare", { t(load_cpp_lines("expBySquare.cpp")) }),
   s("doubling", { t(load_cpp_lines("doubling.cpp")) }),
   

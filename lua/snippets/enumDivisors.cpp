@@ -1,4 +1,4 @@
-std::vector<ll> enum_divisors(ll N) 
+std::vector<ll> enum_divisors(ll N);
 
 std::vector<ll> x;
 for (ll i = 1; i * i <= N; ++i) { // O(√N)

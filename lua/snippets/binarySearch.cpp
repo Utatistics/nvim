@@ -1,4 +1,4 @@
-int binary_search(int key, const::std::vector<int> &A) {
+int binary_search(int key, const std::vector<int> &A) {
     int left = -1; // i = 0 does not always satisfy condition
     int right = (int)A.size();
     while (right - left > 1) {
@@ -7,5 +7,5 @@ int binary_search(int key, const::std::vector<int> &A) {
         // if (solve(mid, key)) right = mid; // define solve elsewhere
         else left = mid;
     }
-    return right;
+    return right; // (int)A.size() if not found. 
 }

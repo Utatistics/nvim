@@ -1,1 +1,1 @@
-std::vector<std::vector<int>> A(N, std::vector<int>(M, 0))
+std::vector<std::vector<int>> A(H, std::vector<int>(W, 0));

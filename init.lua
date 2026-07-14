@@ -35,3 +35,11 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- fold options
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99      -- start with folds open
+vim.opt.foldenable = true
+vim.opt.foldcolumn = "1"
+

@@ -10,7 +10,6 @@ if not vim.uv.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-
 local lazy_config = require "configs.lazy"
 
 -- load plugins
@@ -29,6 +28,7 @@ require("lazy").setup({
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
+-- load configs 
 require "options"
 require "autocmds"
 
@@ -36,10 +36,9 @@ vim.schedule(function()
   require "mappings"
 end)
 
--- fold options
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevel = 99      -- start with folds open
-vim.opt.foldenable = true
-vim.opt.foldcolumn = "1"
+vim.schedule(function()
+    vim.diagnostic.config({
+        virtual_text = false,
+    })
+end)
 

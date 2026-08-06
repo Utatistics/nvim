@@ -56,6 +56,7 @@ return {
   
   s("bfs", { t(load_cpp_lines("bfs.cpp")) }),
   s("dfs", { t(load_cpp_lines("dfs.cpp")) }),
+  s("dfs", { t(load_cpp_lines("connectedComponents.cpp")) }),
   s("dijkstra", { t(load_cpp_lines("dijkstra.cpp")) }), 
 
   s("unionFind", { t(load_cpp_lines("unionFind.cpp")) }),

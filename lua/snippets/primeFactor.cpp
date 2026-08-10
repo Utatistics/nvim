@@ -1,10 +1,22 @@
-std::vector<ll> enum_divisors(ll N) 
+using ll = long long;
+using P = std::pair<ll, ll>;
 
-std::vector<ll> x;
-for (ll i = 1; i * i <= N; ++i) { // O(√N)
-    if (N % i == 0) {
-        x.push_back(i);
-        if (N / i != i) x.push_back(N / i); // avoid duplicates
+auto prime_factorize(ll N) {
+    vector<P> res;
+    for (ll a = 2; a * a <= N; ++a) {
+        if (N % a != 0) continue;
+        ll p = 0; // exponent
+
+        while (N % a == 0) { // until indivisible
+            ++p;
+            N /= a;
+        }
+
+        res.push_back({a, p});
     }
+
+    if (N != 1) res.push_back({N, 1}); // append remaining
+    return res;
 }
-std::sort(x.begin(), x.end()); // if necessaryB 
+
+

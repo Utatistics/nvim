@@ -31,7 +31,7 @@ return {
   s("priorityQueue", { t(load_cpp_lines("priorityQueue.cpp")) }),
  
   s("digitSum", { t(load_cpp_lines("digitSum.cpp")) }),
-  s("toBase10", { t(load_cpp_lines("toBase10.cpp")) }),
+  s("baseConversion", { t(load_cpp_lines("baseConversion.cpp")) }),
   s("coutPrecision", { t(load_cpp_lines("coutPrecision.cpp")) }),
   
   s("gcd", { t(load_cpp_lines("gcd.cpp")) }),

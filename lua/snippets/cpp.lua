@@ -36,6 +36,7 @@ return {
   
   s("gcd", { t(load_cpp_lines("gcd.cpp")) }),
   s("mod", { t(load_cpp_lines("mod.cpp")) }),
+  s("modint", { t(load_cpp_lines("modint.cpp")) }),
   s("nextPerm", { t(load_cpp_lines("nextPerm.cpp")) }),
   s("isPrime", { t(load_cpp_lines("isPrime.cpp")) }),
   s("primeFactor", { t(load_cpp_lines("primeFactor.cpp")) }),

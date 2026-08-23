@@ -60,6 +60,7 @@ return {
   s("connectedComponents", { t(load_cpp_lines("connectedComponents.cpp")) }),
   s("dijkstra", { t(load_cpp_lines("dijkstra.cpp")) }), 
 
+  s("linkedList", { t(load_cpp_lines("linkedList.cpp")) }),
   s("unionFind", { t(load_cpp_lines("unionFind.cpp")) }),
   s("kdTree", { t(load_cpp_lines("kdTree.cpp")) }),
   s("fenwickTree", { t(load_cpp_lines("fenwickTree.cpp")) }),

@@ -23,6 +23,8 @@ end
 
 -- main
 return {
+  s("random", { t(load_cpp_lines("random.cpp")) }),
+  
   s("adj", { t(load_cpp_lines("adj.cpp")) }),
   s("grid", { t(load_cpp_lines("grid.cpp")) }),
   s("gridSearch", { t(load_cpp_lines("gridSearch.cpp")) }),
@@ -30,6 +32,7 @@ return {
   s("sortVector", { t(load_cpp_lines("sortVector.cpp")) }),
   s("priorityQueue", { t(load_cpp_lines("priorityQueue.cpp")) }),
  
+  s("rounding", { t(load_cpp_lines("rounding.cpp")) }),
   s("digitSum", { t(load_cpp_lines("digitSum.cpp")) }),
   s("baseConversion", { t(load_cpp_lines("baseConversion.cpp")) }),
   s("coutPrecision", { t(load_cpp_lines("coutPrecision.cpp")) }),

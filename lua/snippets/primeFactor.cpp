@@ -1,7 +1,7 @@
 using ll = long long;
 using P = std::pair<ll, ll>;
 
-auto prime_factorize(ll N) {
+auto prime_factorize(ll N) { // O(√N)
     std::vector<P> res;
     for (ll a = 2; a * a <= N; ++a) {
         if (N % a != 0) continue;

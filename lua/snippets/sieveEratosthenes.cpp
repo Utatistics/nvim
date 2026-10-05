@@ -1,4 +1,4 @@
-std::vector<bool> sieveEratosthenes(int n) { // identify primes up to n
+std::vector<bool> sieveEratosthenes(int n) { // identify primes up to n *O(N log log N)
     std::vector<bool> isPrime(n + 1, true); // mark all as prime
 
     isPrime[0] = false;

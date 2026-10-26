@@ -11,11 +11,15 @@ struct UnionFind {
     }
 
     void unite(int x, int y) {
-        if (same(x, y)) return;
-        p[root(x)] = root(y);
+        int rx = root(x);
+        int ry = root(y);
+
+        if (rx == ry) return;
+        p[rx] = ry;
     }
 
     bool same(int x, int y) {
         return root(x) == root(y);
     }
 };
+
